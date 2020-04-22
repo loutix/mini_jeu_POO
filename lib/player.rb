@@ -1,8 +1,3 @@
-
-
-
-
-
 class Player
 
 	attr_accessor  :name, :live_points  # les 2 attributs de ma classe player
@@ -21,7 +16,7 @@ class Player
 
 	def gets_damage(domage) #méthode gets_damage qui prend en entrée un integer (= le nombre de dommages subit) et qui le soustraie au niveau de vie (@life_points) du joueur.
 		@live_points = @live_points - domage
-		if @live_points < 0 || @live_points == 0 #Une fois la soustraction faite, la méthode vérifie si @life_points est inférieur ou égale à zéro. Si c'est le cas, c'est que le joueur est mort : elle affiche un message "le joueur XXXX a été tué !".
+		if @live_points < 0 || @live_points == 0 
 			return puts "!!! le joueur #{@name} a été tué !!!"
 		end
 	end
@@ -29,13 +24,13 @@ class Player
 					
 	def attacks(player) 	#coder une méthode attacks qui permette de faire qu'un joueur attaque un autre. => player1.attacks(player2)#La méthode prend donc en entrée un objet Player qui est le joueur subissant l'attaque ;
 		
-		puts " le joueur #{self.name} attaque le joueur #{player.name}" #La méthode commence par annoncer "le joueur [nom de player1] attaque le joueur [nom de player2]" avec un puts ;
+		puts "#{self.name} attaque #{player.name}" 
 		
-		domage = compute_damage #Maintenant, dans attacks, fais appel à compute_damage et stocke le résultat dans une variable.
+		domage = compute_damage 
 
-		player.gets_damage(domage) #Fais subir les dégâts à l'autre Player en utilisant ces dommages et la méthode gets_damage.
+		player.gets_damage(domage) 
 
-		puts "il lui inflige #{domage} point de vie" 	#À présent puts une phrase qui explique ce qui vient de se passer : "il lui inflige XXXX points de dommages"
+		puts "#{self.name} inflige #{domage} point de vie à #{player.name}" 	
 	
 	end
 
@@ -70,8 +65,10 @@ class HumanPlayer < Player
 
  	# new method including the 
  	def compute_damage# dommge aléatoire
-    	return "la puissance de l'attaque avec arme est de #{rand(1..6) * @weapon_level}"
- 	end
+ 		damage = rand(1..6)* @weapon_level
+    	puts "la puissance de l'attaque avec arme est de #{damage}"
+    	return damage
+  	end
 
  	# get a new weapon
  	def search_weapon
